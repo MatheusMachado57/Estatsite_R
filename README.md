@@ -1,2 +1,2 @@
-# Estatsite_R
+# EstatSite_R
  Exercícios em R do Estatsite
