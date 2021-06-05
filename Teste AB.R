@@ -1,4 +1,3 @@
-
 # DIMENSIONANDO O TESTE
 # Para este nosso exemplo, vamos imaginar o teste AB mais simples de todos. 
 # Você quer implementar uma mudança na cor do botão de cadastro do seu 
@@ -13,12 +12,11 @@
 # A primeira é pela função SSizeLogisticBin():
 
 library(powerMediation)
-amostra <- SSizeLogisticBin(p1 = 0.54,
-                            p2 = 0.64,
-                            B = 0.5,
-                            alpha = 0.05,
-                            power = 0.8)
-
+(amostra <- SSizeLogisticBin(p1 = 0.54,
+                             p2 = 0.64,
+                             B = 0.5,
+                             alpha = 0.05,
+                             power = 0.8))
 
 # Recentemente, comecei a utilizar o R para realizar meus testes AB. 
 # Afinal, o R é a linguagem ideal quando o tema é estatística, logo, 
@@ -123,6 +121,4 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Caso você sinta que algo ficou muito vago, 
 # entre em contato deixando um comentário ou mandando mensagem
 # em alguma DM. Todas minhas redes estão em  Sobre o Estatsite / Contato.
-  
-  
   
