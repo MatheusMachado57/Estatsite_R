@@ -1,0 +1,60 @@
+---
+title: "Séries_Temporais - Gráficos_para_Sazonalidade"
+author: "Matheus Machado de Almeida"
+date: "11/06/2021"
+output: html_document
+---
+
+Além da decomposição apresentada no post Séries Temporais: Introdução e Decomposição dos Componentes em R, há outras formas de visualizar a sazonalidade da série. A séries utilizada aqui é a a10 do pacote fpp, e que contém as informações de venda de antibióticos na Austrália no período de 1991 a 2008.
+
+
+O primeiro passo é instalar o pacote fpp e ggplot2;
+```{r, include = FALSE}
+library(ggplot2)
+library(fpp)     
+```
+
+Começamos com um gráfico simples da série:
+```{r}
+autoplot(a10) +
+  ggtitle("Graf. Autoplot para Vendas de Antibioticos na Australia") +
+  ylab("$ milhoes") + 
+  xlab("Ano")
+```
+
+Em seguida, traçamos um gráfico de sazonalidade com a função seasonplot():
+```{r}
+# Grafico de sazonalidade
+seasonplot(a10, 
+           year.labels=TRUE, 
+           main="Graf. Seasonplot para Vendas de Antibioticos na Australia")
+```
+
+Como você pode ver, temos as linhas ano a ano confrontadas. É um gráfico simples de séries, porém com a sazaonalidade confrontada. Podemos observar, por exemplo, que a venda de antibióticos cresce de fevereiro a março, e que janeiro é o pico de vendas. Esse comportamento é padrão para todos os anos, com exceção de 2008. Pode ser o caso dos dados não terem sido completamente coletados (visto que o ano está incompleto).
+
+É possível deixar o gráfico um pouco melhor, com alguns detalhes para facilitar a visualização. Em outras palavras, deixar mais bonito:
+```{r}
+# Grafico de sazonalidade com mais detalhes
+ggseasonplot(a10, 
+             year.labels = TRUE, 
+             year.labels.left = TRUE) +
+  ylab("$ milhoes") +
+  xlab("Mes") + 
+  ggtitle("Graf. GGSeasonplot para Vendas de Antibioticos na Australia")
+```
+
+Outra opção bacana no ggseasonplot() é fazer um gráfico polar:
+```{r}
+ggseasonplot(a10, polar=TRUE) +
+  ylab("$ milhoes") + 
+  xlab("Mes") + 
+  ggtitle("Graf. Polar")
+```
+
+Por fim, você pode comparar as diferentes estações por mês. No gráfico abaixo, temos as séries divididas pelos meses com o traço azul indicando a média de cada um:
+```{r}
+ggsubseriesplot(a10) + 
+      ylab("$ milhoes") + 
+      xlab("Mes")+
+      ggtitle("Graf. GGSubseriesplot")
+```
