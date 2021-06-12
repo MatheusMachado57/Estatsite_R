@@ -1,7 +1,5 @@
 ---
 title: "Regressão Logística"
-author: "Matheus Machado de Almeida"
-date: "12/06/2021"
 output: html_document
 ---
 
@@ -13,7 +11,9 @@ Enquanto na regressão linear temos uma variável resposta contínua (e.g.: o va
 
 Vamos supor que você emprestou dinheiro para um colega. Há dois eventos possíveis desse empréstimo: seu amigo paga ou não. Se o seu amigo tiver um bom salário, um emprego estável e um histórico impecável, é provável que ele te pague. Agora, se ele estiver desempregado, tiver fama de caloteiro e estiver atolado em dívidas, a probabilidade de ele não pagar é maior. Pois é isso que a regressão logística (ou o logit) vai te proporcionar.
 
-Assim como Árvore de Decisão, é simples de entender e fácil de se implementar.
+
+
+##### **Assim como Árvore de Decisão, é simples de entender e fácil de se implementar.**
 
 A saída do Logit não é exatamente a probabilidade, mas te leva a ela através do odds ratio:
 
@@ -23,13 +23,17 @@ odds = p/ (1-p)
 
 Sendo p = probabilidade de ocorrência do evento e 1-p = probabilidade de não ocorrência
 
-Alguns pontos que valem mencionar:
+
+
+##### **Alguns pontos que valem mencionar:**
 
 Na regressão logística não assumimos uma relação linear entre a variável dependente e independente;
+
 Erros não têm distribuição normal;
+
 Utilizamos a máxima verossimilhança, e não mínimos quadrados.
 
------------------------------------------------------------------------------
+**-----------------------------------------------------------------------------**
 
 Regressão logística é uma técnica estatística muito poderosa, utilizada para modelagem de saídas binárias (sim ou não). Quando se quer medir a relação de uma variável dependente binária com uma ou mais variáveis independentes, é comum utilizar esta técnica. Pense, por exemplo, numa empresa que empresta dinheiro para um cliente. Com base nas informações deste cliente (idade, profissão, etc.), é interessante a empresa tentar prever se o cliente vai pagar a dívida ou não. Uma forma de tentar prever isso é utilizando a regressão logística. 
 
@@ -37,7 +41,7 @@ Neste post, vamos entender como construir uma regressão logística no R. Claro,
 
 Vamos construir nossa regressão logística utilizando como exemplo os dados de spam. Inicialmente, vamos carregar o pacote kernlab e os dados de spam:
 
------------------------------------------------------------------------------
+**-----------------------------------------------------------------------------**
 
 ### Pacotes usados:
 
@@ -48,7 +52,8 @@ library("kernlab")
 library(caret)
 library(ROCR)
 ```
------------------------------------------------------------------------------
+**-----------------------------------------------------------------------------**
+
 Como você pode não saber exatamente o que há dentro de spam, é importante verificar algumas coisas, como as primeiras linhas da tabela, o total de linhas e colunas, uma estatística descritiva resumida:
 
 ```{r}  
@@ -85,7 +90,7 @@ Note que, para nossa sorte, não há nenhum NA na base inteira. Se houvesse, pod
 
 Poderíamos, também, fazer uma análise gráfica. Porém, você pode ver diversos tutoriais de gráficos no R e aplicá-los aqui (veja Gráficos em R, Personalizando seu gráfico do ggplot2 – Exports and Imports, William Playfair, Mais gráficos no R: qqplot(), Histograma no R).
 
-Vamos então ao modelo:
+**Vamos então ao modelo:**
 ```{r}
 modelo = glm(type_new ~ our + over + remove, 
              data   = treino, 
@@ -96,8 +101,7 @@ summary(modelo)
 
 Veja que as todas as variáveis são estatisticamente significantes. Você poderia ainda utilizar o stepwise na seleção de variáveis, bastaria rodar step(modelo). No stepwise, as variáveis vão sendo testadas e mantidas de acordo com sua significância.
 
-Se você quiser ver os coeficientes da regressão:
-
+**Se você quiser ver os coeficientes da regressão:**
 ```{r}  
 summary(modelo)$coefficients
 ```
@@ -122,7 +126,6 @@ Teste_v2   = cbind(teste,
 ```
 
 Para saber se o modelo está bom, vamos usar a curva ROC e o KS:
-  
 ```{r}
 pred.val = prediction(pred.Teste,
                       Teste_v2$type)
