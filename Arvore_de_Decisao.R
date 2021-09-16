@@ -1,29 +1,33 @@
----
-title: "Árvore de Decisão"
-author: "Matheus Machado de Almeida"
-date: "09/06/2021"
-output: html_document
----
+# Árvore de decisão é um modelo simples e extremamente útil para fazer predições. 
+# É fácil de explicar para as pessoas mais alheias ao mundo de ciência de 
+# dados e machine learning. Além disso, é simples de identificar o poder 
+# preditivo das variáveis, requer pouco pré-processamento, etc. 
+# Hoje, vou apresentar o código em R para uma árvore de decisão.
 
-### Árvore de Decisão no R
+# Primeiramente, a ideia aqui é apenas passar o esqueleto que você 
+# precisa ter em mãos. Em outras palavras, não teremos teoria, 
+# mas você vai poder pegar o código abaixo e trocar os dados pelo que 
+# você tiver aí. Tive que fazer um trabalho sobre este tema em uma aula 
+# do mestrado e por isso resolvi compartilhá-lo. Nesse exercício, 
+# nós tínhamos a informação de um banco alemão (veja o link Statlog 
+# (German Credit Data) Data Set  contendo as informações a 
+# respeito dos clientes) e tínhamos que montar uma árvore de decisão 
+# que retornasse se o cliente era um bom ou mau pagador.
 
-Árvore de decisão é um modelo simples e extremamente útil para fazer predições. É fácil de explicar para as pessoas mais alheias ao mundo de ciência de dados e machine learning. Além disso, é simples de identificar o poder preditivo das variáveis, requer pouco pré-processamento, etc. Hoje, vou apresentar o código em R para uma árvore de decisão.
+# O arquivo utilizado no código estava em formato .cvs, 
+# que o wordpress aparentemente não suporta pelo método tradicional 
+# de adicionar arquivos, então vocês podem pegar o arquivo no formato 
+# .xlsx para testarem: german_credit_21.
 
-Primeiramente, a ideia aqui é apenas passar o esqueleto que você precisa ter em mãos. Em outras palavras, não teremos teoria, mas você vai poder pegar o código abaixo e trocar os dados pelo que você tiver aí. Tive que fazer um trabalho sobre este tema em uma aula do mestrado e por isso resolvi compartilhá-lo. Nesse exercício, nós tínhamos a informação de um banco alemão (veja o link Statlog (German Credit Data) Data Set  contendo as informações a respeito dos clientes) e tínhamos que montar uma árvore de decisão que retornasse se o cliente era um bom ou mau pagador.
+# Não há muito o que comentar aqui, divirtam-se com o código abaixo, 
+# sigam os comentários que eu deixei e qualquer dúvida é só comentar o post.
 
-O arquivo utilizado no código estava em formato .cvs, que o wordpress aparentemente não suporta pelo método tradicional de adicionar arquivos, então vocês podem pegar o arquivo no formato .xlsx para testarem: german_credit_21.
-
-Não há muito o que comentar aqui, divirtam-se com o código abaixo, sigam os comentários que eu deixei e qualquer dúvida é só comentar o post.
-
-```{r, include = FALSE}
 setwd("C:/Users/mathe/Documents/GitHub/EstatSite_R")
 
 require(readxl)
 library("rpart")
 library("ROCR")
-```
 
-```{r}
 dados <- read_xlsx("german_credit_21-1.xlsx")
 
 ## Discretiza as variaveis
@@ -75,5 +79,3 @@ test_tree_predict = predict(train_tree,
 ## confusion matrix
 table(test_tree_predict, 
       test$Creditability)
-
-```
