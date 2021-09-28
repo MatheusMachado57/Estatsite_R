@@ -1,3 +1,5 @@
+# Só a prática mesmo;
+
 # Carrega pacote Caret para funcoes de modelagem
 # Carrega pacote AppliedPredictiveModeling por causa da base
 library(caret)
